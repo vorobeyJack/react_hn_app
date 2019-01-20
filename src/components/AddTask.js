@@ -5,6 +5,8 @@ import {createTask} from '../actions/tasks';
 import Modal from "semantic-ui-react/dist/commonjs/modules/Modal/Modal";
 import {Button, Form, Input, Select, TextArea} from "semantic-ui-react";
 
+//TODO - fix validation
+
 class AddTask extends React.Component {
     state = {
         id: null,
@@ -12,24 +14,28 @@ class AddTask extends React.Component {
         priority: '',
         description: '',
         timeEstimation: '',
-        showModal: false
-
+        showModal: false,
+        isValidForm: false
     };
 
     handleSave = (e) => {
         e.preventDefault();
-        this.setState(({showModal}) => {
-            return {
-                ...this.state,
-                showModal: !showModal
-            }
-        });
-        this.props.createTask(this.state);
+        if (!this.isFormNotValid()) {
+            this.setState(({showModal, isValidForm}) => {
+                return {
+                    ...this.state,
+                    showModal: !showModal,
+                    isValidForm: !isValidForm
+                }
+            });
+            this.props.createTask(this.state);
+        }
     };
 
     handleInput = ({target: {id, value}}) => {
         this.setState({
             id: Date.now(),
+            isValidForm: !this.isFormNotValid(),
             [id]: value
         });
     };
@@ -41,10 +47,30 @@ class AddTask extends React.Component {
         });
     };
 
-    openModal = () => {
+    toggleModal = () => {
         this.setState({
-            showModal: true
+            showModal: !this.state.showModal
         })
+    };
+
+    isFormNotValid = () => {
+        return ('' === this.state.name ||
+            '' === this.state.description ||
+            '' === this.state.priority ||
+            '' === this.state.timeEstimation
+        );
+    };
+
+    onCloseModal = () => {
+        this.setState({
+            id: null,
+            name: '',
+            priority: '',
+            description: '',
+            timeEstimation: '',
+            showModal: false,
+            isValidForm: false
+        });
     };
 
     render() {
@@ -55,12 +81,12 @@ class AddTask extends React.Component {
             {key: 'critical', text: 'Critical', value: 'critical'},
         ];
 
-        const {showModal} = this.state;
+        const {showModal, isValidForm} = this.state;
 
         return (
             <Modal
-                trigger={<Button color='teal' onClick={this.openModal}>CREATE</Button>}
-                onClose={this.handleSave}
+                trigger={<Button color='teal' onClick={this.toggleModal}>CREATE</Button>}
+                onClose={this.onCloseModal}
                 open={showModal}
             >
                 <Modal.Header>ADD NEW TASK</Modal.Header>
@@ -77,7 +103,6 @@ class AddTask extends React.Component {
                                 />
                                 <Form.Field
                                     id='priority'
-                                    data-id='dsdsd'
                                     control={Select}
                                     options={priorities}
                                     label={{children: 'Priority', htmlFor: 'form-select-control-priority'}}
@@ -101,7 +126,15 @@ class AddTask extends React.Component {
                                 placeholder='Description'
                                 onChange={this.handleInput}
                             />
-                            <Button color='teal' onClick={this.handleSave}>SAVE</Button>
+                            <Button
+                                color='teal'
+                                onClick={this.handleSave}
+                                disabled={!isValidForm}>SAVE
+                            </Button>
+                            <Button
+                                color='grey'
+                                onClick={this.toggleModal}>CANCEL
+                            </Button>
                         </Form>
                     </Modal.Description>
                 </Modal.Content>
