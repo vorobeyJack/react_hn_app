@@ -4,52 +4,49 @@ import {TASKS_FETCH_FAIL} from "../constants";
 
 /**
  *
- * @type {{isFetching: boolean, error: boolean, items: *[]}}
+ * @type {*[]}
  */
-const initialState = {
-    isFetching: false,
-    error: false,
-    items: [
-        {
-            id: 1,
-            name: "Task name #1",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " +
-                "dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip " +
-                "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
-                "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
-                "deserunt mollit anim id est laborum.",
-            priority: "high",
-            timeEstimation: '14h',
-            users: []
-        },
+const initialState = [
+    {
+        id: 1,
+        name: "Task name #1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " +
+            "dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip " +
+            "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
+            "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
+            "deserunt mollit anim id est laborum.",
+        priority: "high",
+        timeEstimation: '14h',
+        users: []
+    },
 
-        {
-            id: 2,
-            name: "Task name #2",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " +
-                "dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip " +
-                "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
-                "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
-                "deserunt mollit anim id est laborum.",
-            priority: "high",
-            timeEstimation: '2h',
-            users: []
-        },
+    {
+        id: 2,
+        name: "Task name #2",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " +
+            "dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip " +
+            "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
+            "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
+            "deserunt mollit anim id est laborum.",
+        priority: "high",
+        timeEstimation: '2h',
+        users: []
+    },
 
-        {
-            id: 3,
-            name: "Task name #3",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " +
-                "dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip " +
-                "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
-                "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
-                "deserunt mollit anim id est laborum.",
-            priority: "high",
-            timeEstimation: '12h',
-            users: []
-        }
-    ]
-};
+    {
+        id: 3,
+        name: "Task name #3",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " +
+            "dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip " +
+            "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
+            "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
+            "deserunt mollit anim id est laborum.",
+        priority: "high",
+        timeEstimation: '12h',
+        users: []
+    }
+];
+
 
 /**
  *
@@ -78,7 +75,7 @@ export const tasks = (
             };
         case ADD_NEW_TASK:
             const {id, name, description, priority, timeEstimation} = action.task;
-            return [...state.items,
+            return [...state,
                 {
                     id,
                     name,

@@ -1,10 +1,11 @@
 import React from 'react';
-
+import {connect} from 'react-redux';
+import {createTask} from '../actions/tasks';
 
 import Modal from "semantic-ui-react/dist/commonjs/modules/Modal/Modal";
 import {Button, Form, Input, Select, TextArea} from "semantic-ui-react";
 
-export default class AddTask extends React.Component {
+class AddTask extends React.Component {
     state = {
         id: null,
         name: '',
@@ -23,7 +24,7 @@ export default class AddTask extends React.Component {
                 showModal: !showModal
             }
         });
-        console.log(this.state);
+        this.props.createTask(this.state);
     };
 
     handleInput = ({target: {id, value}}) => {
@@ -108,3 +109,5 @@ export default class AddTask extends React.Component {
         )
     }
 }
+
+export default connect(null, {createTask})(AddTask);
