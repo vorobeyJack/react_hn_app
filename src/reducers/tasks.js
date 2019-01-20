@@ -1,4 +1,4 @@
-import {TASKS_FETCH_SUCCESS} from "../constants";
+import {ADD_NEW_TASK, TASKS_FETCH_SUCCESS} from "../constants";
 import {TASKS_FETCH_REQUEST} from "../constants";
 import {TASKS_FETCH_FAIL} from "../constants";
 
@@ -57,7 +57,8 @@ const initialState = {
  * @param action
  * @returns {*}
  */
-export const tasks = (state = initialState, action) => {
+export const tasks = (
+    state = initialState, action) => {
     switch (action.type) {
         case TASKS_FETCH_REQUEST:
             return {
@@ -75,6 +76,17 @@ export const tasks = (state = initialState, action) => {
                 isFetching: false,
                 error: true,
             };
+        case ADD_NEW_TASK:
+            const {id, name, description, priority, timeEstimation} = action.task;
+            return [...state.items,
+                {
+                    id,
+                    name,
+                    description,
+                    priority,
+                    timeEstimation
+
+                }];
         default:
             return initialState;
     }

@@ -1,19 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Item} from 'semantic-ui-react';
+import AddTask from '../components/AddTask';
 import {TaskItem} from '../components/TaskItem';
 import {getList} from '../actions/tasks';
 
 class TasksList extends React.Component {
-    componentDidMount() {
-        // this.props.getList();
-    }
-
     render() {
         const {items} = this.props;
-
         return (
             <Item.Group>
+                <AddTask/>
                 {items.map((
                     {
                         id,

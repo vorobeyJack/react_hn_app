@@ -1,5 +1,5 @@
 import {NotFound} from "./components/404";
-import TaskList from "./containers/TaskList";
+import TaskList from "./containers/TasksList";
 
 export const routes = [
     {
