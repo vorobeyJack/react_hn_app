@@ -1,10 +1,11 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {routes} from '../routes';
+import {connect} from 'react-redux';
 
 import {Navbar} from './general/Navbar';
 
-export const Application = () => {
+const Application = () => {
     return (
         <div className='ui container'>
             <Navbar/>
@@ -22,3 +23,5 @@ export const Application = () => {
         </div>
     );
 }
+
+export default connect()(Application);
