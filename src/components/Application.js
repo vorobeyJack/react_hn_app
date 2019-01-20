@@ -4,6 +4,11 @@ import {routes} from '../routes';
 
 import {Navbar} from './general/Navbar';
 
+/**
+ *
+ * @returns {*}
+ * @constructor
+ */
 export const Application = () => {
     return (
         <div className='ui container'>
@@ -14,7 +19,8 @@ export const Application = () => {
                         <Route
                             key={name}
                             path={path}
-                            isExact={isExact}
+                            exact={isExact}
+                            component={component}
                         />
                     )
                 })}

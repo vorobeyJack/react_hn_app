@@ -2,6 +2,11 @@ import React from 'react';
 import {Nav} from './Nav';
 import {Input, Menu} from 'semantic-ui-react';
 
+/**
+ *
+ * @returns {*}
+ * @constructor
+ */
 export const Navbar = () => {
     return (
         <div>
