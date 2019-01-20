@@ -1,4 +1,4 @@
-import {TASKS_FETCH_SUCCESS} from "../constants";
+import * as type from "../constants";
 
 /**
  *
@@ -6,6 +6,18 @@ import {TASKS_FETCH_SUCCESS} from "../constants";
  */
 export const getList = () => {
     return {
-        type: TASKS_FETCH_SUCCESS
+        type: type.TASKS_FETCH_SUCCESS
+    }
+};
+
+/**
+ *
+ * @param task
+ * @returns {{type: string, task: *}}
+ */
+export const createTask = (task) => {
+    return {
+        type: type.ADD_NEW_TASK,
+        task
     }
 };
