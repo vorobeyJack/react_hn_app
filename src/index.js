@@ -5,14 +5,17 @@ import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux';
 import Application from './components/Application';
 import storeCreator from './storeCreator';
+import ErrorBoundary from './components/ErrorBoundary';
 
 import {BrowserRouter as Router} from 'react-router-dom';
 
 ReactDOM.render(
     <Provider store={storeCreator}>
-        <Router>
-            <Application/>
-        </Router>
+        <ErrorBoundary>
+            <Router>
+                <Application/>
+            </Router>
+        </ErrorBoundary>
     </Provider>,
     document.getElementById('root')
 );

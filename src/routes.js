@@ -1,43 +1,47 @@
+import TaskList from './containers/TasksList'
+import {NotFound} from "./components/404";
+
 export const routes = [
     {
         name: 'Home',
         path: '/',
         isExact: true,
-        component: {}
+        component: NotFound
     },
 
     {
         name: 'Login',
         path: '/login',
-        component: {}
+        component: NotFound
     },
 
     {
         name: 'Register',
         path: '/register',
-        component: {}
+        component: NotFound
     },
 
     {
         name: 'Logout',
         path: '/logout',
-        component: {}
+        component: NotFound
     },
 
     {
         name: 'Tasks',
         path: '/tasks',
-        component: {}
+        component: TaskList
     },
 
     {
         name: 'Users',
         path: '/users',
-        component: {}
+        component: NotFound
     },
 
     {
-        name: '404',
-        component: {}
+        name: 'NotFound',
+        path: '*',
+        component: NotFound
     }
 ];

@@ -3,25 +3,26 @@ import {Route, Switch} from 'react-router-dom';
 import {routes} from '../routes';
 import {connect} from 'react-redux';
 
-import {Navbar} from './general/Navbar';
+import {NavBar} from './general/Navbar';
 
 const Application = () => {
     return (
         <div className='ui container'>
-            <Navbar/>
+            <NavBar routes={routes}/>
             <Switch>
                 {routes.map(({name, path, isExact, component}) => {
                     return (
                         <Route
                             key={name}
+                            exact={isExact}
                             path={path}
-                            isExact={isExact}
+                            component={component}
                         />
                     )
                 })}
             </Switch>
         </div>
     );
-}
+};
 
 export default connect()(Application);
