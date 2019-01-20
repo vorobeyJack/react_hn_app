@@ -2,6 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import Application from './components/Application';
 
-ReactDOM.render(<h3>Hello from App</h3>,document.getElementById('root'));
+import {BrowserRouter as Router} from 'react-router-dom';
+
+ReactDOM.render(
+    <Router>
+        <Application/>
+    </Router>,
+    document.getElementById('root')
+);
 serviceWorker.unregister();
