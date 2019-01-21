@@ -78,7 +78,7 @@ export const tasks = (
             return [...state,
                 {
                     id,
-                    name,
+                    name,n
                     description,
                     priority,
                     timeEstimation

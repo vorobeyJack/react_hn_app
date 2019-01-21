@@ -1,0 +1,10 @@
+// Initialize Firebase
+const config = {
+    apiKey: "YourApiKey",
+    authDomain: "YourAuthDomain",
+    databaseURL: "YourDbUrl",
+    projectId: "YourProjectId",
+    storageBucket: "YourStorageBucket",
+    messagingSenderId: "YourMsgSenderId"
+};
+firebase.initializeApp(config);
