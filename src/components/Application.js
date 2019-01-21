@@ -27,4 +27,4 @@ export const Application = () => {
             </Switch>
         </div>
     );
-}
+};

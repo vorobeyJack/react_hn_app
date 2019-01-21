@@ -1,16 +1,50 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Item} from 'semantic-ui-react';
+import {Dimmer, Item, Loader} from 'semantic-ui-react';
 import AddTask from '../components/AddTask';
 import {TaskItem} from '../components/TaskItem';
+import {firestoreConnect} from 'react-redux-firebase';
+import {compose} from 'redux';
+import {getList} from '../actions/tasks';
 
 class TasksList extends React.Component {
+    state = {
+        isLoading: true
+    };
+
+    componentDidMount() {
+        // in case if loading items first time
+        // from firebase store into redux
+        if (this.props.tasks === undefined) {
+            this.props.getList()
+                .then(() => {
+                    this.setState({
+                        isLoading: false
+                    })
+                });
+        } else {
+            this.setState({
+                isLoading: false
+            })
+        }
+    }
+
     render() {
         const {tasks} = this.props;
+        const {isLoading} = this.state;
+
+        if (isLoading) {
+            return (
+                <Dimmer active>
+                    <Loader size='large'>Loading</Loader>
+                </Dimmer>
+            )
+        }
+
         return (
             <Item.Group>
                 <AddTask/>
-                {tasks.map((
+                {tasks && tasks.map((
                     {
                         id,
                         name,
@@ -30,15 +64,22 @@ class TasksList extends React.Component {
                     />
                 ))}
             </Item.Group>
-
         );
     }
+
 }
 
-const mapStateToProps = ({tasks}) => {
+const mapStateToProps = ({firestore: {ordered: {tasks}}}) => {
     return {
-        tasks
+        tasks: tasks
     }
 };
 
-export default connect(mapStateToProps)(TasksList);
+export default compose(
+    connect(mapStateToProps, {getList}),
+    firestoreConnect([
+        {
+            collection: 'tasks'
+        }
+    ])
+)(TasksList);
