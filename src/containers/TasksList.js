@@ -6,10 +6,12 @@ import {TaskItem} from '../components/TaskItem';
 import {firestoreConnect} from 'react-redux-firebase';
 import {compose} from 'redux';
 import {getList} from '../actions/tasks';
+import {DeleteTaskModal} from '../components/DeleteTaskModal';
 
 class TasksList extends React.Component {
     state = {
-        isLoading: true
+        isLoading: true,
+        showDeleteModal: false
     };
 
     componentDidMount() {
@@ -29,9 +31,15 @@ class TasksList extends React.Component {
         }
     }
 
+    toggleDeleteModal = () => {
+        this.setState(({showDeleteModal}) => ({
+            showDeleteModal: !showDeleteModal
+        }))
+    };
+
     render() {
         const {tasks} = this.props;
-        const {isLoading} = this.state;
+        const {isLoading, showDeleteModal} = this.state;
 
         if (isLoading) {
             return (
@@ -44,6 +52,11 @@ class TasksList extends React.Component {
         return (
             <Item.Group>
                 <AddTask/>
+                <DeleteTaskModal
+                    show={showDeleteModal}
+                    onClose={this.toggleDeleteModal}
+                />
+
                 {tasks && tasks.map((
                     {
                         id,
@@ -61,6 +74,7 @@ class TasksList extends React.Component {
                         timeEstimation={timeEstimation}
                         users={users}
                         key={id}
+                        showDeleteModal={this.toggleDeleteModal}
                     />
                 ))}
             </Item.Group>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Item} from 'semantic-ui-react';
+import {Item, Label} from 'semantic-ui-react';
 
 /**
  *
@@ -12,14 +12,18 @@ import {Item} from 'semantic-ui-react';
  * @returns {*}
  * @constructor
  */
-export const TaskItem = ({id, name, description, priority, timeEstimation, users}) => (
-    <Item>
-        <Item.Content>
+export const TaskItem = ({id, name, description, priority, timeEstimation, showDeleteModal}) => (
+    <Item key={id}>
+        <Item.Content key={id}>
             <Item.Header>{name}</Item.Header> |
             <Item.Header>Priority: {priority}</Item.Header>
             <Item.Meta>{description}</Item.Meta>
-            <Item.Description>
-            </Item.Description>
+            <Item.Extra>
+                <Label>
+                    <a href='#' onClick={showDeleteModal}>REMOVE</a>
+                </Label>
+                <Label icon='globe' content='Additional Languages'/>
+            </Item.Extra>
             <Item.Extra>Time: {timeEstimation}</Item.Extra>
         </Item.Content>
     </Item>
