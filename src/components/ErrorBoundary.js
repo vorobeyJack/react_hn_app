@@ -12,7 +12,6 @@ export default class extends React.Component {
 
     componentDidCatch(err, info) {
         this.setState({hasError: true});
-        console.error(info);
     }
 
     render() {

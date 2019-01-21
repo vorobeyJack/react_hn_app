@@ -1,52 +1,4 @@
-import {ADD_NEW_TASK, TASKS_FETCH_SUCCESS} from "../constants";
-import {TASKS_FETCH_REQUEST} from "../constants";
-import {TASKS_FETCH_FAIL} from "../constants";
-
-/**
- *
- * @type {*[]}
- */
-const initialState = [
-    {
-        id: 1,
-        name: "Task name #1",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " +
-            "dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip " +
-            "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
-            "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
-            "deserunt mollit anim id est laborum.",
-        priority: "high",
-        timeEstimation: '14h',
-        users: []
-    },
-
-    {
-        id: 2,
-        name: "Task name #2",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " +
-            "dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip " +
-            "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
-            "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
-            "deserunt mollit anim id est laborum.",
-        priority: "high",
-        timeEstimation: '2h',
-        users: []
-    },
-
-    {
-        id: 3,
-        name: "Task name #3",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " +
-            "dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip " +
-            "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore " +
-            "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
-            "deserunt mollit anim id est laborum.",
-        priority: "high",
-        timeEstimation: '12h',
-        users: []
-    }
-];
-
+import * as type from "../constants";
 
 /**
  *
@@ -55,36 +7,27 @@ const initialState = [
  * @returns {*}
  */
 export const tasks = (
-    state = initialState, action) => {
+    state = [], action) => {
     switch (action.type) {
-        case TASKS_FETCH_REQUEST:
-            return {
-                ...state,
-                isFetching: true,
-            };
-        case TASKS_FETCH_SUCCESS:
-            return {
-                ...state,
-                isFetching: false
-            };
-        case TASKS_FETCH_FAIL:
-            return {
-                ...state,
-                isFetching: false,
-                error: true,
-            };
-        case ADD_NEW_TASK:
-            const {id, name, description, priority, timeEstimation} = action.task;
+        case type.TASKS_FETCH_REQUEST:
+            return state;
+        case type.CREATE_NEW_TASK_REQUEST:
+            return state;
+        case type.NEW_TASK_CREATED_SUCCESSFULLY:
+            const {id, name, description, priority, timeEstimation, createdAt} = action.task;
             return [...state,
                 {
                     id,
-                    name,n
+                    name,
                     description,
                     priority,
-                    timeEstimation
-
+                    timeEstimation,
+                    createdAt
                 }];
+        case type.NEW_TASK_CREATED_FAILED:
+            console.log(action);
+            return state;
         default:
-            return initialState;
+            return state;
     }
 };

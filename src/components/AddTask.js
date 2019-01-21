@@ -6,7 +6,6 @@ import Modal from "semantic-ui-react/dist/commonjs/modules/Modal/Modal";
 import {Button, Form, Input, Select, TextArea} from "semantic-ui-react";
 
 //TODO - fix validation
-
 class AddTask extends React.Component {
     state = {
         id: null,
