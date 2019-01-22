@@ -5,11 +5,14 @@ import AddTask from '../components/AddTask';
 import {TaskItem} from '../components/TaskItem';
 import {firestoreConnect} from 'react-redux-firebase';
 import {compose} from 'redux';
-import {getList} from '../actions/tasks';
+import {getList, deleteTask} from '../actions/tasks';
+import {DeleteTaskModal} from '../components/DeleteTaskModal';
 
 class TasksList extends React.Component {
     state = {
-        isLoading: true
+        isLoading: true,
+        showDeleteModal: false,
+        deleteTaskId: null
     };
 
     componentDidMount() {
@@ -29,9 +32,23 @@ class TasksList extends React.Component {
         }
     }
 
+    toggleDeleteModal = (taskId) => {
+        this.setState(({showDeleteModal}) => ({
+            showDeleteModal: !showDeleteModal,
+            deleteTaskId: taskId
+        }));
+    };
+
+    deleteTask = (taskId) => {
+        this.setState({
+            showDeleteModal: false
+        });
+        this.props.deleteTask(taskId);
+    };
+
     render() {
         const {tasks} = this.props;
-        const {isLoading} = this.state;
+        const {isLoading, showDeleteModal, deleteTaskId} = this.state;
 
         if (isLoading) {
             return (
@@ -44,6 +61,12 @@ class TasksList extends React.Component {
         return (
             <Item.Group>
                 <AddTask/>
+                <DeleteTaskModal
+                    show={showDeleteModal}
+                    onClose={this.toggleDeleteModal}
+                    deleteTask={this.deleteTask}
+                    taskId={deleteTaskId}
+                />
                 {tasks && tasks.map((
                     {
                         id,
@@ -60,7 +83,8 @@ class TasksList extends React.Component {
                         priority={priority}
                         timeEstimation={timeEstimation}
                         users={users}
-                        key={id}
+                        key={`${id}+${name}`}
+                        showDeleteModal={this.toggleDeleteModal}
                     />
                 ))}
             </Item.Group>
@@ -76,7 +100,7 @@ const mapStateToProps = ({firestore: {ordered: {tasks}}}) => {
 };
 
 export default compose(
-    connect(mapStateToProps, {getList}),
+    connect(mapStateToProps, {getList, deleteTask}),
     firestoreConnect([
         {
             collection: 'tasks'
