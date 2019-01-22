@@ -39,7 +39,6 @@ export const createTask = task => (dispatch, getState, {getFirebase, getFirestor
     });
 
     const firestore = getFirestore();
-    console.log(task);
     firestore.collection('tasks').add({
         ...task,
         createdAt: Date.now()
@@ -54,5 +53,40 @@ export const createTask = task => (dispatch, getState, {getFirebase, getFirestor
                 type: type.NEW_TASK_CREATED_FAILED,
                 error
             })
+        })
+};
+
+/**
+ *
+ * @param taskId
+ * @returns {Function}
+ */
+export const deleteTask = taskId => (dispatch, getState, {getFirebase, getFirestore}) => {
+    dispatch({
+        type: type.TASK_REMOVE_REQUEST,
+        taskId
+    });
+
+    const firestore = getFirestore();
+    firestore.collection('tasks').where("id", "==", taskId).get()
+        .then(querySnapshot => {
+            const batch = firestore.batch();
+            querySnapshot.forEach(doc => {
+                return batch.delete(doc.ref);
+            });
+
+            return batch.commit();
+        })
+        .then(() => {
+            dispatch({
+                type: type.TASK_REMOVED_SUCCESSFULLY
+            })
+
+        })
+        .catch(error => {
+            dispatch({
+                type: type.TASK_REMOVED_FAILED,
+                error
+            });
         })
 };
