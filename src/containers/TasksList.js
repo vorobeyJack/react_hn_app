@@ -47,7 +47,7 @@ class TasksList extends React.Component {
     };
 
     render() {
-        const {tasks} = this.props;
+        let {tasks, searchingBy: {searchValue}} = this.props;
         const {isLoading, showDeleteModal, deleteTaskId} = this.state;
 
         if (isLoading) {
@@ -56,6 +56,13 @@ class TasksList extends React.Component {
                     <Loader size='large'>Loading</Loader>
                 </Dimmer>
             )
+        }
+
+        //if we are searching for certain tasks by name...
+        if (undefined !== searchValue) {
+            tasks = tasks.filter(task => {
+                return task.name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1;
+            })
         }
 
         return (
@@ -93,9 +100,10 @@ class TasksList extends React.Component {
 
 }
 
-const mapStateToProps = ({firestore: {ordered: {tasks}}}) => {
+const mapStateToProps = ({firestore: {ordered: {tasks}}, search}) => {
     return {
-        tasks: tasks
+        tasks: tasks,
+        searchingBy: search
     }
 };
 

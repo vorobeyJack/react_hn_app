@@ -7,7 +7,7 @@ import {Input, Menu} from 'semantic-ui-react';
  * @returns {*}
  * @constructor
  */
-export const Navbar = () => {
+export const Navbar = ({handleSearch}) => {
     return (
         <div>
             <Menu>
@@ -19,7 +19,8 @@ export const Navbar = () => {
                 <Menu.Item as={Nav} name='register' to='/register'/>
                 <Menu.Menu position='right'>
                     <Menu.Item>
-                        <Input icon='search' placeholder='Search...'/>
+                        <Input icon='search' placeholder='Search...'
+                               onChange={({target: {value}}) => handleSearch(value)}/>
                     </Menu.Item>
                 </Menu.Menu>
             </Menu>

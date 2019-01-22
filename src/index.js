@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux';
-import {Application} from './components/Application';
+import Application from './components/Application';
 import storeCreator from './storeCreator';
 import ErrorBoundary from './components/ErrorBoundary';
 
