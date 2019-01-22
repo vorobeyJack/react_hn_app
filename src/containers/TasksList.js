@@ -47,7 +47,7 @@ class TasksList extends React.Component {
     };
 
     render() {
-        const {tasks} = this.props;
+        let {tasks, searchingTasks} = this.props;
         const {isLoading, showDeleteModal, deleteTaskId} = this.state;
 
         if (isLoading) {
@@ -57,6 +57,8 @@ class TasksList extends React.Component {
                 </Dimmer>
             )
         }
+
+        tasks = (undefined === searchingTasks) ? tasks : searchingTasks;
 
         return (
             <Item.Group>
@@ -93,9 +95,10 @@ class TasksList extends React.Component {
 
 }
 
-const mapStateToProps = ({firestore: {ordered: {tasks}}}) => {
+const mapStateToProps = ({firestore: {ordered: {tasks}}, search: {searchingTasks}}) => {
     return {
-        tasks: tasks
+        tasks,
+        searchingTasks
     }
 };
 

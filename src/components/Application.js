@@ -2,13 +2,8 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {routes} from '../routes';
 
-import {Navbar} from './general/Navbar';
+import Navbar from './general/Navbar';
 
-/**
- *
- * @returns {*}
- * @constructor
- */
 export const Application = () => {
     return (
         <div className='ui container'>

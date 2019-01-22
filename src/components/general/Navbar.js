@@ -1,13 +1,19 @@
 import React from 'react';
 import {Nav} from './Nav';
 import {Input, Menu} from 'semantic-ui-react';
+import {connect} from 'react-redux';
+import {getSearchItems} from '../../actions/search';
 
 /**
  *
  * @returns {*}
  * @constructor
  */
-export const Navbar = () => {
+const Navbar = (props) => {
+    const handleSearch = ({target: {value}}) => {
+        props.getSearchItems(value);
+    };
+
     return (
         <div>
             <Menu>
@@ -19,10 +25,13 @@ export const Navbar = () => {
                 <Menu.Item as={Nav} name='register' to='/register'/>
                 <Menu.Menu position='right'>
                     <Menu.Item>
-                        <Input icon='search' placeholder='Search...'/>
+                        <Input icon='search' placeholder='Search...'
+                               onChange={handleSearch}/>
                     </Menu.Item>
                 </Menu.Menu>
             </Menu>
         </div>
     )
-}
+};
+
+export default connect(null, {getSearchItems})(Navbar);
