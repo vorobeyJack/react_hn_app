@@ -41,6 +41,7 @@ export const createTask = task => (dispatch, getState, {getFirebase, getFirestor
     const firestore = getFirestore();
     firestore.collection('tasks').add({
         ...task,
+        id: Date.now(),
         createdAt: Date.now()
     })
         .then(() => {

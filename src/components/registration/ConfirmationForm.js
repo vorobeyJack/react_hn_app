@@ -10,6 +10,7 @@ import {Card, Button} from 'semantic-ui-react';
  * @param position
  * @param experience
  * @param handlePreviousStep
+ * @param handleSaveUser
  * @returns {*}
  * @constructor
  */
@@ -23,10 +24,16 @@ export const ConfirmationForm = (
             position,
             experience,
         },
-        handlePreviousStep
+        handlePreviousStep,
+        handleSaveUser
     }) => {
     const cancelAndGoBack = () => {
         handlePreviousStep();
+    };
+
+    const saveUser = (e) => {
+        e.preventDefault();
+        handleSaveUser();
     };
 
     return (
@@ -52,7 +59,7 @@ export const ConfirmationForm = (
                     <div className='ui two buttons'>
                         <Button onClick={cancelAndGoBack}>PREV</Button>
                         <Button.Or text='or'/>
-                        <Button color='green'>CONFIRM</Button>
+                        <Button color='green' onClick={saveUser}>CONFIRM</Button>
                     </div>
                 </Card.Content>
             </Card>

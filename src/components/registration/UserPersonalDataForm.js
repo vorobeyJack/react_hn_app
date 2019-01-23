@@ -28,7 +28,7 @@ export const UserPersonalDataForm = (
         handleNextStep();
     };
 
-    const formIsNotValid = () => {
+    const formIsValid = () => {
         return firstName !== '' &&
             lastName !== '' &&
             email !== '' &&
@@ -79,7 +79,7 @@ export const UserPersonalDataForm = (
                     <Button
                         onClick={saveAndGoAhead}
                         color='green'
-                        disabled={!formIsNotValid()}
+                        disabled={!formIsValid()}
                     >NEXT
                     </Button>
                 </Form>
