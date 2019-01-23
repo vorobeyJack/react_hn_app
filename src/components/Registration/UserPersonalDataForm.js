@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form, Button} from 'semantic-ui-react';
+import {Phone as PhoneInput} from '../../components/general/FormInput/Phone';
 
 /**
  *
@@ -12,6 +13,7 @@ import {Form, Button} from 'semantic-ui-react';
  * @returns {*}
  * @constructor
  */
+
 export const UserPersonalDataForm = (
     {
         values:
@@ -30,6 +32,7 @@ export const UserPersonalDataForm = (
         return firstName !== '' &&
             lastName !== '' &&
             email !== '' &&
+            email.search(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/) !== -1 &&
             phoneNumber !== '';
     };
 
@@ -59,16 +62,14 @@ export const UserPersonalDataForm = (
                     <Form.Field>
                         <label>Email</label>
                         <input
-                            type='email'
                             id='email'
                             placeholder='Email Address'
                             onChange={handleInput}
-                            defaultValue={email}
-                        />
+                            defaultValue={email}/>
                     </Form.Field>
                     <Form.Field>
                         <label>Phone number</label>
-                        <input
+                        <PhoneInput
                             id='phoneNumber'
                             placeholder='Phone number'
                             onChange={handleInput}

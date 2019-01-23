@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form, Button} from 'semantic-ui-react';
+import {Experience as ExperienceInput} from '../../components/general/FormInput/Experience';
 
 /**
  *
@@ -50,9 +51,9 @@ export const UserProfessionalDataForm = (
                     </Form.Field>
                     <Form.Field>
                         <label>Experience</label>
-                        <input
+                        <ExperienceInput
                             id='experience'
-                            placeholder='Experience'
+                            placeholder='Experience (years)'
                             onChange={handleInput}
                             defaultValue={experience}
                         />
