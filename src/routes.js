@@ -1,4 +1,5 @@
 import {NotFound} from "./components/404";
+import MainForm from './containers/Registration/MainForm';
 import TaskList from "./containers/TasksList";
 
 export const routes = [
@@ -16,9 +17,9 @@ export const routes = [
     },
 
     {
-        name: 'Register',
+        name: 'Registration',
         path: '/register',
-        component: NotFound
+        component: MainForm
     },
 
     {
