@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form, Button} from 'semantic-ui-react';
-import {Experience as ExperienceInput} from '../../components/general/FormInput/Experience';
+import {Experience as ExperienceInput} from '../general/formInput/Experience';
 
 /**
  *
