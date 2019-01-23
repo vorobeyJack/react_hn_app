@@ -33,7 +33,6 @@ class AddTask extends React.Component {
 
     handleInput = ({target: {id, value}}) => {
         this.setState({
-            id: Date.now(),
             isValidForm: !this.isFormNotValid(),
             [id]: value
         });

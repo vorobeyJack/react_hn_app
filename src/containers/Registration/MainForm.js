@@ -2,8 +2,11 @@ import React from 'react';
 import {UserPersonalDataForm} from '../../components/registration/UserPersonalDataForm';
 import {UserProfessionalDataForm} from '../../components/registration/UserProfessionalDataForm';
 import {ConfirmationForm} from "../../components/registration/ConfirmationForm";
+import {PasswordDataForm} from "../../components/registration/PasswordDataForm";
+import {connect} from 'react-redux';
+import {signUp} from '../../actions/auth';
 
-export default class MainForm extends React.Component {
+class MainForm extends React.Component {
     state = {
         step: 1,
         firstName: '',
@@ -11,7 +14,9 @@ export default class MainForm extends React.Component {
         email: '',
         phoneNumber: '',
         position: '',
-        experience: ''
+        experience: '',
+        password: '',
+        passwordConfirm: ''
     };
 
     handleNextStep = () => {
@@ -34,19 +39,9 @@ export default class MainForm extends React.Component {
         })
     };
 
-    isFormValid = (step) => {
-        switch (step) {
-            case 1:
-                return this.state.firstName !== '' &&
-                    this.state.lastName !== '' &&
-                    this.state.email !== '' &&
-                    this.state.phone !== '';
-            case 2:
-                return this.state.position !== '' &&
-                    this.state.experience !== '';
-            default:
-                return false;
-        }
+    handleSaveUser = () => {
+        this.props.signUp(this.state);
+        this.props.history.push('/');
     };
 
     render() {
@@ -58,7 +53,6 @@ export default class MainForm extends React.Component {
                         handleNextStep={this.handleNextStep}
                         handleInput={this.handleInput}
                         values={this.state}
-                        isFormValid={this.isFormValid}
                     />
                 );
             case 2:
@@ -72,9 +66,19 @@ export default class MainForm extends React.Component {
                 );
             case 3:
                 return (
+                    <PasswordDataForm
+                        handleNextStep={this.handleNextStep}
+                        handlePreviousStep={this.handlePreviousStep}
+                        handleInput={this.handleInput}
+                        values={this.state}
+                    />
+                );
+            case 4:
+                return (
                     <ConfirmationForm
                         handlePreviousStep={this.handlePreviousStep}
                         values={this.state}
+                        handleSaveUser={this.handleSaveUser}
                     />
                 );
             default:
@@ -83,9 +87,10 @@ export default class MainForm extends React.Component {
                         handleNextStep={this.handleNextStep}
                         handleInput={this.handleInput}
                         values={this.state}
-                        isFormValid={this.isFormValid}
                     />
                 );
         }
     }
 }
+
+export default connect(null, {signUp})(MainForm);

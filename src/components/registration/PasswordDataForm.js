@@ -1,25 +1,24 @@
 import React from 'react';
 import {Form, Button} from 'semantic-ui-react';
-import {Experience as ExperienceInput} from '../general/formInput/Experience';
 
 /**
  *
- * @param position
- * @param experience
- * @param handleInput
+ * @param password
+ * @param passwordConfirm
  * @param handlePreviousStep
  * @param handleNextStep
+ * @param handleInput
  * @returns {*}
  * @constructor
  */
-export const UserProfessionalDataForm = (
+export const PasswordDataForm = (
     {
-        values:
-            {position, experience},
-        handleInput,
+        values: {password, passwordConfirm},
         handlePreviousStep,
-        handleNextStep
+        handleNextStep,
+        handleInput
     }) => {
+
     const saveAndGoAhead = (e) => {
         e.preventDefault();
         handleNextStep();
@@ -31,31 +30,36 @@ export const UserProfessionalDataForm = (
     };
 
     const formIsValid = () => {
-        return position !== '' &&
-            experience !== '';
+        return password !== '' &&
+            password.length >= 6 &&
+            passwordConfirm !== '' &&
+            passwordConfirm === password;
     };
 
     return (
         <div className="ui grid">
             <div className="ui form nine wide column centered">
                 <Form>
-                    <h1 className="ui centered">Enter Professional Data</h1>
+                    <h1 className="ui centered">Enter Your Password Data</h1>
+                    <h5 className="ui centered">(6 characters min)</h5>
                     <Form.Field>
-                        <label>Position</label>
+                        <label>Password</label>
                         <input
-                            id='position'
-                            placeholder='Position'
+                            id='password'
+                            type='password'
+                            placeholder='Password'
                             onChange={handleInput}
-                            defaultValue={position}
+                            defaultValue={password}
                         />
                     </Form.Field>
                     <Form.Field>
-                        <label>Experience</label>
-                        <ExperienceInput
-                            id='experience'
-                            placeholder='Experience (years)'
+                        <label>Password Confirm</label>
+                        <input
+                            id='passwordConfirm'
+                            type='password'
+                            placeholder='Password confirm'
                             onChange={handleInput}
-                            defaultValue={experience}
+                            defaultValue={passwordConfirm}
                         />
                     </Form.Field>
                     <Button.Group>
