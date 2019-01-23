@@ -77,8 +77,15 @@ export default class MainForm extends React.Component {
                         values={this.state}
                     />
                 );
-            case 4:
-                return 4;
+            default:
+                return (
+                    <UserPersonalDataForm
+                        handleNextStep={this.handleNextStep}
+                        handleInput={this.handleInput}
+                        values={this.state}
+                        isFormValid={this.isFormValid}
+                    />
+                );
         }
     }
 }

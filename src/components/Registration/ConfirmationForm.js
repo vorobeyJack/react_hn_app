@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Button, Form} from 'semantic-ui-react';
+import {Card, Button} from 'semantic-ui-react';
 
 /**
  *
@@ -30,9 +30,12 @@ export const ConfirmationForm = (
     };
 
     return (
-        <Card.Group>
+        <Card.Group centered style={{marginTop: '30px'}}>
             <Card>
                 <Card.Content>
+                    <Card.Header>
+                        <h3>Registration confirmation</h3>
+                    </Card.Header>
                     <Card.Header>{firstName} {lastName}</Card.Header>
                     <Card.Meta>{position}</Card.Meta>
                     <Card.Description>

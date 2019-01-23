@@ -35,31 +35,35 @@ export const UserProfessionalDataForm = (
     };
 
     return (
-        <Form>
-            <h1 className="ui centered">Enter Professional Data</h1>
-            <Form.Field>
-                <label>Position</label>
-                <input
-                    id='position'
-                    placeholder='Position'
-                    onChange={handleInput}
-                    defaultValue={position}
-                />
-            </Form.Field>
-            <Form.Field>
-                <label>Experience</label>
-                <input
-                    id='experience'
-                    placeholder='Experience'
-                    onChange={handleInput}
-                    defaultValue={experience}
-                />
-            </Form.Field>
-            <Button.Group>
-                <Button onClick={cancelAndGoBack}>PREV</Button>
-                <Button.Or text='or'/>
-                <Button onClick={saveAndGoAhead} color='green' disabled={!formIsNotValid()}>NEXT</Button>
-            </Button.Group>
-        </Form>
-    );
+        <div className="ui grid">
+            <div className="ui form nine wide column centered">
+                <Form>
+                    <h1 className="ui centered">Enter Professional Data</h1>
+                    <Form.Field>
+                        <label>Position</label>
+                        <input
+                            id='position'
+                            placeholder='Position'
+                            onChange={handleInput}
+                            defaultValue={position}
+                        />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Experience</label>
+                        <input
+                            id='experience'
+                            placeholder='Experience'
+                            onChange={handleInput}
+                            defaultValue={experience}
+                        />
+                    </Form.Field>
+                    <Button.Group>
+                        <Button onClick={cancelAndGoBack}>PREV</Button>
+                        <Button.Or text='or'/>
+                        <Button onClick={saveAndGoAhead} color='green' disabled={!formIsNotValid()}>NEXT</Button>
+                    </Button.Group>
+                </Form>
+            </div>
+        </div>
+    )
 };
