@@ -1,7 +1,7 @@
 import React from 'react';
-import {UserPersonalDataForm} from '../../components/Registration/UserPersonalDataForm';
-import {UserProfessionalDataForm} from '../../components/Registration/UserProfessionalDataForm';
-import {ConfirmationForm} from "../../components/Registration/ConfirmationForm";
+import {UserPersonalDataForm} from '../../components/registration/UserPersonalDataForm';
+import {UserProfessionalDataForm} from '../../components/registration/UserProfessionalDataForm';
+import {ConfirmationForm} from "../../components/registration/ConfirmationForm";
 
 export default class MainForm extends React.Component {
     state = {

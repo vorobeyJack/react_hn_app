@@ -17,7 +17,7 @@ export const routes = [
     },
 
     {
-        name: 'Registration',
+        name: 'registration',
         path: '/register',
         component: MainForm
     },

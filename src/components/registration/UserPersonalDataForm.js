@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form, Button} from 'semantic-ui-react';
-import {Phone as PhoneInput} from '../../components/general/FormInput/Phone';
+import {Phone as PhoneInput} from '../general/formInput/Phone';
 
 /**
  *
