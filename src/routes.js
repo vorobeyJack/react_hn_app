@@ -8,7 +8,8 @@ export const routes = [
         name: 'Home',
         path: '/',
         isExact: true,
-        component: NotFound
+        component: NotFound,
+        isPrivate: true
     },
 
     {
@@ -26,23 +27,26 @@ export const routes = [
     {
         name: 'Logout',
         path: '/logout',
-        component: NotFound
+        component: NotFound,
+        isPrivate: true
     },
 
     {
         name: 'Tasks',
         path: '/tasks',
-        component: TaskList
+        component: TaskList,
+        isPrivate: true
     },
 
     {
         name: 'Users',
         path: '/users',
-        component: UsersList
+        component: UsersList,
+        isPrivate: true
     },
 
     {
         name: '404',
-        component: NotFound
+        component: NotFound,
     }
 ];
