@@ -1,5 +1,6 @@
 import {NotFound} from "./components/404";
-import MainForm from './containers/Registration/MainForm';
+import {LoginForm} from './containers/authentication/LoginForm';
+import MainForm from './containers/authentication/MainForm';
 import TaskList from "./containers/TasksList";
 import UsersList from "./containers/UsersList";
 
@@ -8,13 +9,14 @@ export const routes = [
         name: 'Home',
         path: '/',
         isExact: true,
-        component: NotFound
+        component: NotFound,
+        isPrivate: true
     },
 
     {
         name: 'Login',
         path: '/login',
-        component: NotFound
+        component: LoginForm
     },
 
     {
@@ -26,23 +28,26 @@ export const routes = [
     {
         name: 'Logout',
         path: '/logout',
-        component: NotFound
+        component: NotFound,
+        isPrivate: true
     },
 
     {
         name: 'Tasks',
         path: '/tasks',
-        component: TaskList
+        component: TaskList,
+        isPrivate: true
     },
 
     {
         name: 'Users',
         path: '/users',
-        component: UsersList
+        component: UsersList,
+        isPrivate: true
     },
 
     {
         name: '404',
-        component: NotFound
+        component: NotFound,
     }
 ];
