@@ -25,6 +25,7 @@ class TasksList extends React.Component {
                         isLoading: false
                     })
                 });
+            // or redux already knows about firestore data
         } else {
             this.setState({
                 isLoading: false
@@ -95,10 +96,11 @@ class TasksList extends React.Component {
 
 }
 
-const mapStateToProps = ({firestore: {ordered: {tasks}}, search: {searchingTasks}}) => {
+const mapStateToProps = ({firestore: {ordered: {tasks}}, search: {searchingTasks}, auth}) => {
     return {
         tasks,
-        searchingTasks
+        searchingTasks,
+        auth
     }
 };
 

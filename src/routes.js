@@ -1,6 +1,7 @@
 import {NotFound} from "./components/404";
 import MainForm from './containers/Registration/MainForm';
 import TaskList from "./containers/TasksList";
+import UsersList from "./containers/UsersList";
 
 export const routes = [
     {
@@ -37,7 +38,7 @@ export const routes = [
     {
         name: 'Users',
         path: '/users',
-        component: NotFound
+        component: UsersList
     },
 
     {
