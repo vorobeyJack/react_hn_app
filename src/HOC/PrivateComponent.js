@@ -9,7 +9,6 @@ import {isUserAuthenticated} from '../services/localStorageService';
  * @constructor
  */
 export const PrivateComponent = (WrappedComponent) => {
-    console.log(isUserAuthenticated());
     return () => {
         if (isUserAuthenticated()) {
             return <WrappedComponent {...this.props}/>

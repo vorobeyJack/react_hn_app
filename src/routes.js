@@ -1,5 +1,6 @@
 import {NotFound} from "./components/404";
-import MainForm from './containers/Registration/MainForm';
+import {LoginForm} from './containers/authentication/LoginForm';
+import MainForm from './containers/authentication/MainForm';
 import TaskList from "./containers/TasksList";
 import UsersList from "./containers/UsersList";
 
@@ -15,7 +16,7 @@ export const routes = [
     {
         name: 'Login',
         path: '/login',
-        component: NotFound
+        component: LoginForm
     },
 
     {
