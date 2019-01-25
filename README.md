@@ -1,1 +1,1 @@
-Task management system based on React/Redux.
+Task management system based on React/Redux
