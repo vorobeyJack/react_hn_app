@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {getSearchItems} from '../../actions/search';
 
 /**
- *
+ * // todo - refactor - check for isLogin/isLogout routes => Menu.Item
  * @returns {*}
  * @constructor
  */
