@@ -14,21 +14,31 @@ const Navbar = (props) => {
         props.getSearchItems(value);
     };
 
+    const {isAuthenticated} = props;
+    if (isAuthenticated) {
+        return (
+            <div>
+                <Menu>
+                    <Menu.Item as={Nav} name='home' to='/'/>
+                    <Menu.Item as={Nav} name='tasks' to='/tasks'/>
+                    <Menu.Item as={Nav} name='users' to='/users'/>
+                    <Menu.Item as={Nav} name='logout' to='/logout'/>
+                    <Menu.Menu position='right'>
+                        <Menu.Item>
+                            <Input icon='search' placeholder='Search...'
+                                   onChange={handleSearch}/>
+                        </Menu.Item>
+                    </Menu.Menu>
+                </Menu>
+            </div>
+        )
+    }
+
     return (
         <div>
             <Menu>
-                <Menu.Item as={Nav} name='home' to='/'/>
-                <Menu.Item as={Nav} name='tasks' to='/tasks'/>
-                <Menu.Item as={Nav} name='users' to='/users'/>
                 <Menu.Item as={Nav} name='login' to='/login'/>
-                <Menu.Item as={Nav} name='logout' to='/logout'/>
                 <Menu.Item as={Nav} name='register' to='/register'/>
-                <Menu.Menu position='right'>
-                    <Menu.Item>
-                        <Input icon='search' placeholder='Search...'
-                               onChange={handleSearch}/>
-                    </Menu.Item>
-                </Menu.Menu>
             </Menu>
         </div>
     )

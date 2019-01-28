@@ -1,8 +1,12 @@
 import React from 'react';
 import {Form} from "semantic-ui-react";
 import {Button} from "semantic-ui-react";
+import {connect} from 'react-redux';
+import {signIn} from '../../actions/auth';
+import {compose} from "redux";
+import {firestoreConnect} from "react-redux-firebase";
 
-export class LoginForm extends React.Component {
+class LoginForm extends React.Component {
     state = {
         email: '',
         password: ''
@@ -19,12 +23,19 @@ export class LoginForm extends React.Component {
             this.state.password !== ''
     };
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const {email, password} = this.state;
+        this.props.signIn(email, password);
+    };
+
     render() {
         const {email, password} = this.state;
+
         return (
             <div className="ui grid">
                 <div className="ui form nine wide column centered">
-                    <Form>
+                    <Form onSubmit={this.handleSubmit}>
                         <h1 className="ui centered">Login</h1>
                         <Form.Field>
                             <label>Email</label>
@@ -55,3 +66,14 @@ export class LoginForm extends React.Component {
         );
     }
 }
+
+export default compose(
+    connect(null, {signIn}),
+    firestoreConnect([
+        {
+            collection: 'users'
+        }
+    ])
+)(LoginForm);
+
+

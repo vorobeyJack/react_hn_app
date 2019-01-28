@@ -1,5 +1,5 @@
 import {NotFound} from "./components/404";
-import {LoginForm} from './containers/authentication/LoginForm';
+import LoginForm from './containers/authentication/LoginForm';
 import MainForm from './containers/authentication/MainForm';
 import TaskList from "./containers/TasksList";
 import UsersList from "./containers/UsersList";
