@@ -9,9 +9,9 @@ import {isUserAuthenticated} from '../services/localStorageService';
  * @constructor
  */
 export const PrivateComponent = (WrappedComponent) => {
-    return () => {
+    return (props) => {
         if (isUserAuthenticated()) {
-            return <WrappedComponent {...this.props}/>
+            return <WrappedComponent {...props}/>
         }
         return <Redirect to='/login'/>
     }

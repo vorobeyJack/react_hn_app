@@ -2,7 +2,7 @@
  *
  * @param user
  */
-export const persister = user => {
+export const persist = user => {
     localStorage.setItem('authenticated_user', JSON.stringify({
         user: user,
         authenticated_time: Date.now()
@@ -20,12 +20,12 @@ export const isUserAuthenticated = () => {
     if (null !== authenticated_user) {
         const user = JSON.parse(authenticated_user);
         // check if not expired - 1 min for example
-        const isExpired = (currentUnixTime - user.authenticated_time) > 3600;
-        if (isExpired) {
-            localStorage.removeItem('authenticated_user');
-            return false;
-        }
-
+        // const isExpired = (currentUnixTime - user.authenticated_time) > 36000;
+        // if (isExpired) {
+        //     localStorage.removeItem('authenticated_user');
+        //     return false;
+        // }
+        //
         return true;
     }
 

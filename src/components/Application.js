@@ -2,13 +2,15 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {routes} from '../routes';
 import {PrivateComponent} from "../HOC/PrivateComponent";
+import {isUserAuthenticated} from '../services/localStorageService';
 
 import Navbar from './general/Navbar';
 
 export const Application = () => {
+    const isAuth = isUserAuthenticated();
     return (
         <div className='ui container'>
-            <Navbar/>
+            <Navbar isAuthenticated={isAuth}/>
             <Switch>
                 {routes.map(({name, path, isExact, component, isPrivate}) => {
                     const resultComponent = isPrivate ? PrivateComponent(component) : component;
