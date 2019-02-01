@@ -46,6 +46,11 @@ export const authReducer = (state = {}, action) => {
                 ...state,
                 error: action.error
             };
+        case type.USER_ALREADY_EXISTS:
+            return {
+                ...state,
+                error: action.error
+            };
         default:
             return state;
     }

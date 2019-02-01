@@ -5,6 +5,9 @@ import {connect} from 'react-redux';
 import {signIn} from '../../actions/auth';
 import {compose} from "redux";
 import {firestoreConnect} from "react-redux-firebase";
+import { ToastContainer, toast} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import * as type from "../../constants";
 
 class LoginForm extends React.Component {
     state = {

@@ -1,6 +1,7 @@
 import md5 from 'crypto-js/md5';
 import * as type from '../constants';
 import {persist, extract} from '../services/localStorageService';
+import {toast} from "react-toastify";
 
 /**
  *
@@ -15,6 +16,7 @@ export const signUp = user => (dispatch, getState, {getFirebase, getFirestore}) 
 
     try {
         const firestore = getFirestore();
+
         firestore.collection('users').add({
             ...user,
             password: md5(user.password).toString(),
@@ -68,7 +70,11 @@ export const signIn = (email, password) => (dispatch, getState) => {
         } else {
             dispatch({
                 type: type.USER_LOGIN_BAD_CREDENTIALS
+
             });
+            setTimeout(() => {
+                toast.error(type.LOGIN_BAD_CREDENTIALS_MESSAGE)
+            }, 0);
         }
     } catch (error) {
         dispatch({

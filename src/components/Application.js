@@ -5,6 +5,7 @@ import {PrivateComponent} from "../HOC/PrivateComponent";
 import {isUserAuthenticated} from '../services/localStorageService';
 
 import Navbar from './general/Navbar';
+import {ToastContainer} from "react-toastify";
 
 export const Application = () => {
     const isAuth = isUserAuthenticated();
@@ -24,6 +25,7 @@ export const Application = () => {
                     )
                 })}
             </Switch>
+            <ToastContainer autoClose={2000} />
         </div>
     );
 };

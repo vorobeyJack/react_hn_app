@@ -1,3 +1,4 @@
+import {Home} from './components/Home';
 import {NotFound} from "./components/404";
 import LoginForm from './containers/authentication/LoginForm';
 import MainForm from './containers/authentication/MainForm';
@@ -9,7 +10,7 @@ export const routes = [
         name: 'Home',
         path: '/',
         isExact: true,
-        component: NotFound,
+        component: Home,
         isPrivate: true
     },
 

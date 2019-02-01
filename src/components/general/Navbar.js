@@ -17,8 +17,9 @@ const Navbar = (props) => {
 
     const handleLogout = (e) => {
         e.preventDefault();
-        props.signOut();
-        props.history.push('/login');
+        const {signOut, history: {push}} = props;
+        signOut();
+        push('/login')
     };
 
     const {isAuthenticated} = props;

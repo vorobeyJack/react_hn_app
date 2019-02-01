@@ -26,9 +26,13 @@ export const USER_LOGOUT_FAILED = 'USER_LOGOUT_FAILED';
 export const USER_REGISTER_REQUEST = 'USER_REGISTER_REQUEST';
 export const USER_REGISTER_SUCCESSFULLY = 'USER_REGISTER_SUCCESSFULLY';
 export const USER_REGISTER_FAILED = 'USER_REGISTER_FAILED';
+export const USER_ALREADY_EXISTS = 'USER_ALREADY_EXISTS';
 
 export const USERS_FETCH_REQUEST = 'USERS_FETCH_REQUEST';
 export const USERS_FETCH_SUCCESS = 'USERS_FETCH_SUCCESS';
 export const USERS_FETCH_FAIL = 'USERS_FETCH_FAIL';
+
+export const LOGIN_BAD_CREDENTIALS_MESSAGE = 'Incorrect email|password';
+export const LOGIN_USER_ALREADY_EXISTS_MESSAGE = 'User with current email already exists';
 
 export const UNDEFINED_ERROR_MESSAGE = 'Ooops, something went wrong';
