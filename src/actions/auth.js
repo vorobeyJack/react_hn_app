@@ -80,16 +80,23 @@ export const signIn = (email, password) => (dispatch, getState) => {
 
 /**
  *
- * @param dispatch
+ * @returns {Function}
  */
-export const signOut = dispatch => {
+export const signOut = () => dispatch => {
     dispatch({
         type: type.USER_LOGOUT_REQUEST
     });
 
-    extract();
-
-    dispatch({
-        type: type.USER_LOGOUT_SUCCESSFULLY
-    });
+    try {
+        extract();
+        dispatch({
+            type: type.USER_LOGOUT_SUCCESSFULLY,
+            userAuthenticated: null
+        });
+    } catch (error) {
+        dispatch({
+            type: type.USER_LOGOUT_FAILED,
+            error: error.toString()
+        });
+    }
 };
