@@ -1,6 +1,6 @@
 import md5 from 'crypto-js/md5';
 import * as type from '../constants';
-import {persist} from '../services/localStorageService';
+import {persist, extract} from '../services/localStorageService';
 
 /**
  *
@@ -76,4 +76,20 @@ export const signIn = (email, password) => (dispatch, getState) => {
             error: error.toString()
         });
     }
+};
+
+/**
+ *
+ * @param dispatch
+ */
+export const signOut = dispatch => {
+    dispatch({
+        type: type.USER_LOGOUT_REQUEST
+    });
+
+    extract();
+
+    dispatch({
+        type: type.USER_LOGOUT_SUCCESSFULLY
+    });
 };

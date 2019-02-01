@@ -4,8 +4,8 @@ import {Input, Menu} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import {getSearchItems} from '../../actions/search';
 
+
 /**
- * // todo - refactor - check for isLogin/isLogout routes => Menu.Item
  * @returns {*}
  * @constructor
  */
@@ -22,7 +22,7 @@ const Navbar = (props) => {
                     <Menu.Item as={Nav} name='home' to='/'/>
                     <Menu.Item as={Nav} name='tasks' to='/tasks'/>
                     <Menu.Item as={Nav} name='users' to='/users'/>
-                    <Menu.Item as={Nav} name='logout' to='/logout'/>
+                    <Menu.Item as={Nav} name='logout' to='/logout' onClick={() => console.log(12)}/>
                     <Menu.Menu position='right'>
                         <Menu.Item>
                             <Input icon='search' placeholder='Search...'

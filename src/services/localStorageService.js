@@ -9,6 +9,10 @@ export const persist = user => {
     }));
 };
 
+export const extract = () => {
+    localStorage.removeItem('authenticated_user');
+};
+
 /**
  *
  * @returns {boolean}
