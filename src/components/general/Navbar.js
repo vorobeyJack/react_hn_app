@@ -3,7 +3,8 @@ import {Nav} from './Nav';
 import {Input, Menu} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import {getSearchItems} from '../../actions/search';
-
+import {signOut} from '../../actions/auth';
+import {withRouter} from 'react-router-dom';
 
 /**
  * @returns {*}
@@ -14,6 +15,13 @@ const Navbar = (props) => {
         props.getSearchItems(value);
     };
 
+    const handleLogout = (e) => {
+        e.preventDefault();
+        const {signOut, history: {push}} = props;
+        signOut();
+        push('/login')
+    };
+
     const {isAuthenticated} = props;
     if (isAuthenticated) {
         return (
@@ -22,7 +30,7 @@ const Navbar = (props) => {
                     <Menu.Item as={Nav} name='home' to='/'/>
                     <Menu.Item as={Nav} name='tasks' to='/tasks'/>
                     <Menu.Item as={Nav} name='users' to='/users'/>
-                    <Menu.Item as={Nav} name='logout' to='/logout' onClick={() => console.log(12)}/>
+                    <Menu.Item as={Nav} name='logout' to='/logout' onClick={handleLogout}/>
                     <Menu.Menu position='right'>
                         <Menu.Item>
                             <Input icon='search' placeholder='Search...'
@@ -44,4 +52,4 @@ const Navbar = (props) => {
     )
 };
 
-export default connect(null, {getSearchItems})(Navbar);
+export default withRouter(connect(null, {getSearchItems, signOut})(Navbar));

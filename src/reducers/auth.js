@@ -21,6 +21,16 @@ export const authReducer = (state = {}, action) => {
                 ...state,
                 userAuthenticated: null
             };
+        case type.USER_LOGOUT_SUCCESSFULLY:
+            return {
+                ...state,
+                userAuthenticated: null
+            };
+        case type.USER_LOGOUT_FAILED:
+            return {
+                ...state,
+                error: action.error
+            };
         case type.USER_LOGIN_FAILED:
             return state;
         //register cases
@@ -32,6 +42,11 @@ export const authReducer = (state = {}, action) => {
                 userRegistered: action.user
             };
         case type.USER_REGISTER_FAILED:
+            return {
+                ...state,
+                error: action.error
+            };
+        case type.USER_ALREADY_EXISTS:
             return {
                 ...state,
                 error: action.error

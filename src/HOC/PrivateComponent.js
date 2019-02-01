@@ -3,7 +3,6 @@ import {Redirect} from 'react-router-dom';
 import {isUserAuthenticated} from '../services/localStorageService';
 
 /**
- *
  * @param WrappedComponent
  * @returns {Function}
  * @constructor
